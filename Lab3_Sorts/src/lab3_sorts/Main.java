@@ -9,7 +9,7 @@ package lab3_sorts;
  *
  * @author Gustavo
  */
-public class Lab3_Sorts {
+public class Main {
 
     /**
      * @param args the command line arguments
