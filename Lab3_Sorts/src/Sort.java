@@ -190,5 +190,35 @@ public class Sort {
 	    	placement *= RADIX;
 	  	}
 }
-    
+    //Metodo usado para dividir el array en el quick sort
+int partition(int datos[], int left, int right)
+{
+      int i = left, j = right;
+      int tmp;
+      int pivot = datos[(left + right) / 2];
+     
+      while (i <= j) {
+            while (datos[i] < pivot)
+                  i++;
+            while (datos[j] > pivot)
+                  j--;
+            if (i <= j) {
+                  tmp = datos[i];
+                  datos[i] = datos[j];
+                  datos[j] = tmp;
+                  i++;
+                  j--;
+            }
+      };
+     
+      return i;
+}
+
+public void quickSort(int left, int right) {
+      int index = partition(datos, left, right);
+      if (left < index - 1)
+            quickSort(left, index - 1);
+      if (index < right)
+            quickSort(index, right);
+}
 }

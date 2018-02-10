@@ -51,6 +51,13 @@ public class Main {
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
+                System.out.println();         
+        sorts.quickSort(0,sorts.datos.length-1);//sorting array elements using bubble sort
+        
+        System.out.println("Array After quick Sort");  
+                for(int i=0; i < sorts.datos.length; i++){  
+                        System.out.print(sorts.datos[i] + " ");  
+                }  
     }  
     
     
