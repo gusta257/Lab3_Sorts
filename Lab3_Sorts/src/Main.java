@@ -18,7 +18,7 @@ public class Main {
         
         System.out.println("Bienvenido");
         
-        System.out.println("Array Before Bubble Sort");  
+        System.out.println("Array Before ");  
         for(int item=0; item < sorts.datos.length; item++){  
                 System.out.print(sorts.datos[item] + " ");  
         }  
@@ -29,13 +29,21 @@ public class Main {
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
-                //Merge
+                
         System.out.println();         
-        sorts.mergeSort(sorts.datos);//sorting array elements using bubble sort
+        sorts.gnomeSort(sorts.datos);//sorting array elements using bubble sort
         
-        System.out.println("Array After merge Sort");  
+        System.out.println("Array After gnome Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
-                }
+                }  
+        System.out.println();         
+        sorts.sort(sorts.datos,0,2999);//sorting array elements using bubble sort
+        
+        System.out.println("Array After Merge Sort");  
+                for(int i=0; i < sorts.datos.length; i++){  
+                        System.out.print(sorts.datos[i] + " ");  
+                }  
+        
     }  
 }
