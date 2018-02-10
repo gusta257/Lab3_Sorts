@@ -37,8 +37,5 @@ public class Main {
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }
-        
-        
-        
     }  
 }
