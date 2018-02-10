@@ -44,6 +44,14 @@ public class Main {
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
+         System.out.println();         
+        sorts.radixSort();//sorting array elements using bubble sort
         
+        System.out.println("Array After radix Sort");  
+                for(int i=0; i < sorts.datos.length; i++){  
+                        System.out.print(sorts.datos[i] + " ");  
+                }  
     }  
+    
+    
 }

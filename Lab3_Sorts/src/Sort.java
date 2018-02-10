@@ -17,6 +17,7 @@ public class Sort {
         this.datos = datos;
     }
  
+ 
     public void llenar(String texto) {
         File f;
         FileWriter w;
@@ -156,14 +157,38 @@ public class Sort {
         }
     }
  
-    /* A utility function to print array of size n */
-    public static void printArray(int datos[])
-    {
-        int n = datos.length;
-        for (int i=0; i<n; ++i)
-            System.out.print(datos[i] + " ");
-        System.out.println();
-    }
- 
+    public  void radixSort() {
+	  	final int RADIX = 10;
+	  	// declare and initialize bucket[]
+	  	List<Integer>[] bucket = new ArrayList[RADIX];
+	  	for (int i = 0; i < bucket.length; i++) {
+	    	bucket[i] = new ArrayList<Integer>();
+	  	}
+	 
+	  	// sort
+	  	boolean maxLength = false;
+	  	int tmp = -1, placement = 1;
+	  	while (!maxLength) {
+	    	maxLength = true;
+	    	// split input between lists
+	    	for (int i : datos) {
+	      		tmp = i / placement;
+	      		bucket[tmp % RADIX].add(i);
+	      		if (maxLength && tmp > 0) {
+	        		maxLength = false;
+	      		}
+	    	}
+	    	// empty lists into input array
+	    	int a = 0;
+	    	for (int b = 0; b < RADIX; b++) {
+	      		for (Integer i : bucket[b]) {
+	        		datos[a++] = i;
+	      		}
+	      		bucket[b].clear();
+	    	}
+	    	// move to next digit
+	    	placement *= RADIX;
+	  	}
+}
     
 }
