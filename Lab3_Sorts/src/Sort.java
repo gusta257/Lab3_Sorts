@@ -3,34 +3,33 @@ import java.io.*;
 import java.util.*;
 
 /**
- *
- * @author Gustavo
+ * @author Luis Esturban 17256
+ * @author Gustavo De Leon 17085
  */
 public class Sort {
+    //Crea la lista para los 3000 datos
      public int[] datos=new int[3000];
-    
+    //Get para los datos de la lista 
      public int[] getDatos() {
         return datos;
     }
-
+     //Set para los datos de la lista
     public void setDatos(int[] datos) {
         this.datos = datos;
     }
- 
- 
+    //Metodo para crear el archivo con los numeros random
     public void llenar(String texto) {
         File f;
         FileWriter w;
         BufferedWriter bw;
         PrintWriter wr;
-
         try{
         f= new File(texto);
         w = new FileWriter(f);
         bw = new BufferedWriter(w);
         wr = new PrintWriter(bw);
         Random aleatorio = new Random();
-        
+    //Crea los numeros hasta llenar los 3000
         for(int i=0; i<2999; i++){
             datos[i] = aleatorio.nextInt(3001);
             int x = (int) datos[i];
@@ -41,10 +40,14 @@ public class Sort {
         }catch(IOException e){
             System.out.println("Hubo un error");
         }
-        
     } 
-
-    public  void bubbleSort(int[]datos) {  
+    //----------------------------------------------------------------------------------------------------------------------
+    /**
+    *El metodo de burbuja consiste en comparar el primero con el segundo, si el segundo es 
+    *menor que el primero se intercambian los valores. Después el segundo con el tercero y 
+    *así sucesivamente, cuando no haya ningún intercambio, el array estará ordenado.
+    */
+    public  void bubbleSort(int[]datos){  
         int aux;
         boolean cambios = false;
         while(true){
@@ -59,14 +62,17 @@ public class Sort {
         }
             if(cambios==false)
                 break;
-   
-        }
+        }  
     }
-    public static void gnomeSort(int[]datos)
-    {
+    //----------------------------------------------------------------------------------------------------------------------
+    /**
+    *El algoritmo es similar a la ordenación por inserción , excepto que , en lugar de 
+    *insertar directamente el elemento a su lugar apropiado , el algoritmo realiza una 
+    *serie de permutaciones como en el ordenamiento de burbuja. 
+    */
+    public static void gnomeSort(int[]datos){
       int i=1;
       int j=2;
-
       while(i < datos.length) {
         if ( datos[i-1] <= datos[i] ) {
           i = j; j++;
@@ -78,34 +84,18 @@ public class Sort {
         }
       }
     }
-    
-    
-    // Merges two subarrays of arr[].
-    // First subarray is arr[l..m]
-    // Second subarray is arr[m+1..r]
-    public void merge(int[]datos, int l, int m, int r)
-    {
-        // Find sizes of two subarrays to be merged
+    //----------------------------------------------------------------------------------------------------------------------
+    //Metodo complementario para Mergesort
+    public void merge(int[]datos, int l, int m, int r){
         int n1 = m - l + 1;
         int n2 = r - m;
- 
-        /* Create temp arrays */
         int L[] = new int [n1];
         int R[] = new int [n2];
- 
-        /*Copy data to temp arrays*/
         for (int i=0; i<n1; ++i)
             L[i] = datos[l + i];
         for (int j=0; j<n2; ++j)
             R[j] = datos[m + 1+ j];
- 
- 
-        /* Merge the temp arrays */
- 
-        // Initial indexes of first and second subarrays
         int i = 0, j = 0;
- 
-        // Initial index of merged subarry array
         int k = l;
         while (i < n1 && j < n2)
         {
@@ -121,16 +111,12 @@ public class Sort {
             }
             k++;
         }
- 
-        /* Copy remaining elements of L[] if any */
         while (i < n1)
         {
             datos[k] = L[i];
             i++;
             k++;
         }
- 
-        /* Copy remaining elements of R[] if any */
         while (j < n2)
         {
             datos[k] = R[j];
@@ -138,39 +124,38 @@ public class Sort {
             k++;
         }
     }
- 
-    // Main function that sorts arr[l..r] using
-    // merge()
-    public void sort(int arr[], int l, int r)
+    /**
+     *El metodo de Mergesort Consiste en dividir el problema a resolver en subproblemas
+     *del mismo tipo que a su vez se dividirán, mientras no sean suficientemente pequeños 
+     *o triviales. 
+    */
+    public void sortMERGE(int arr[], int l, int r)
     {
         if (l < r)
         {
-            // Find the middle point
             int m = (l+r)/2;
- 
-            // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr , m+1, r);
- 
-            // Merge the sorted halves
+            sortMERGE(arr, l, m);
+            sortMERGE(arr , m+1, r);
             merge(arr, l, m, r);
         }
     }
- 
+    //----------------------------------------------------------------------------------------------------------------------
+    /**
+     *El metodo de Radixsort es un algoritmo de ordenamiento que ordena enteros procesando
+     *sus dígitos de forma individual. Como los enteros pueden representar cadenas de caracteres
+     *(por ejemplo, nombres o fechas) y, especialmente, números en punto flotante especialmente 
+     *formateados, radix sort no está limitado sólo a los enteros.
+    */
     public  void radixSort() {
 	  	final int RADIX = 10;
-	  	// declare and initialize bucket[]
 	  	List<Integer>[] bucket = new ArrayList[RADIX];
 	  	for (int i = 0; i < bucket.length; i++) {
 	    	bucket[i] = new ArrayList<Integer>();
 	  	}
-	 
-	  	// sort
 	  	boolean maxLength = false;
 	  	int tmp = -1, placement = 1;
 	  	while (!maxLength) {
 	    	maxLength = true;
-	    	// split input between lists
 	    	for (int i : datos) {
 	      		tmp = i / placement;
 	      		bucket[tmp % RADIX].add(i);
@@ -178,7 +163,6 @@ public class Sort {
 	        		maxLength = false;
 	      		}
 	    	}
-	    	// empty lists into input array
 	    	int a = 0;
 	    	for (int b = 0; b < RADIX; b++) {
 	      		for (Integer i : bucket[b]) {
@@ -186,39 +170,43 @@ public class Sort {
 	      		}
 	      		bucket[b].clear();
 	    	}
-	    	// move to next digit
 	    	placement *= RADIX;
 	  	}
-}
-    //Metodo usado para dividir el array en el quick sort
-int partition(int datos[], int left, int right)
-{
-      int i = left, j = right;
-      int tmp;
-      int pivot = datos[(left + right) / 2];
-     
-      while (i <= j) {
-            while (datos[i] < pivot)
-                  i++;
-            while (datos[j] > pivot)
-                  j--;
-            if (i <= j) {
-                  tmp = datos[i];
-                  datos[i] = datos[j];
-                  datos[j] = tmp;
-                  i++;
-                  j--;
-            }
-      };
-     
-      return i;
-}
-
-public void quickSort(int left, int right) {
-      int index = partition(datos, left, right);
-      if (left < index - 1)
+    }
+    //----------------------------------------------------------------------------------------------------------------------
+    //Metodo complementario para Quicksort
+    int partition(int datos[], int left, int right)
+    {
+        int i = left, j = right;
+        int tmp;
+        int pivot = datos[(left + right) / 2]; 
+        while (i <= j) {
+                while (datos[i] < pivot)
+                      i++;
+                while (datos[j] > pivot)
+                      j--;
+                if (i <= j) {
+                    tmp = datos[i];
+                    datos[i] = datos[j];
+                    datos[j] = tmp;
+                    i++;
+                    j--;
+                }
+        }; 
+        return i;
+    }
+    /**
+     *El metodo de Quicksort consiste en ordenar un array mediante un pivote, que es un punto
+     *intermedio en el array, es como si se ordenaran pequeños trozos del array, haciendo que
+     *a la izquierda esten los menores a ese pivote y en la derecha lo mayores a este, después
+     *se vuelve a calcular el pivote de trozos de listas. 
+    */
+    public void quickSort(int left, int right) {
+        int index = partition(datos, left, right);
+        if (left < index - 1)
             quickSort(left, index - 1);
-      if (index < right)
+        if (index < right)
             quickSort(index, right);
-}
+    }
+    //----------------------------------------------------------------------------------------------------------------------
 }

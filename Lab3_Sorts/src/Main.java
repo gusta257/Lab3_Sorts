@@ -1,6 +1,4 @@
-
 /**
- *
  * @author Gustavo De Leon 17085
  * @author Luis Esturban 17256
  */
@@ -12,51 +10,54 @@ public class Main {
     
     public static void main(String[] args) {
         Sort sorts = new Sort();
+        //Llena el archivo con los datos
         sorts.llenar("random.txt");
 //---------------------------------------------------------------------------------------------------------------------- 
         System.out.println("Bienvenido");
-        
-        System.out.println("Array Before ");  
+        //Muestra el Array principal
+        System.out.println("Lista Principal ");  
         for(int item=0; item < sorts.datos.length; item++){  
                 System.out.print(sorts.datos[item] + " ");  
         }  
 //----------------------------------------------------------------------------------------------------------------------         
         System.out.println();         
-        sorts.bubbleSort(sorts.datos);//sorting array elements using bubble sort
-        System.out.println("Array After Bubble Sort");  
+        sorts.bubbleSort(sorts.datos);
+        //Muestra la lista ordenada con Bubble Sort
+        System.out.println("Lista ordenada con Bubble Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
 //---------------------------------------------------------------------------------------------------------------------- 
         System.out.println();         
-        sorts.gnomeSort(sorts.datos);//sorting array elements using bubble sort
-        System.out.println("Array After gnome Sort");  
+        sorts.gnomeSort(sorts.datos);
+        //Muestra la lista ordenada con Gnome Sort
+        System.out.println("Lista ordenada Gnome Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
-                }  /*
+                }  
 //---------------------------------------------------------------------------------------------------------------------- 
         System.out.println();         
-        sorts.sort(sorts.datos,0,2999);//sorting array elements using bubble sort
-        System.out.println("Array After Merge Sort");  
+        sorts.sortMERGE(sorts.datos,0,2999);
+        //Muestra la lista ordenada con Merge Sort
+        System.out.println("Lista ordenada Merge Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
-                }  */
+                }  
 //---------------------------------------------------------------------------------------------------------------------- 
         System.out.println();      
-        sorts.radixSort();//sorting array elements using bubble sort
-        System.out.println("Array After radix Sort");  
+        sorts.radixSort();
+        //Muestra la lista ordenada con Radix Sort
+        System.out.println("Lista ordenada Radix Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
 //---------------------------------------------------------------------------------------------------------------------- 
         System.out.println();         
-        sorts.quickSort(0,sorts.datos.length-1);//sorting array elements using bubble sort
-        
-        System.out.println("Array After quick Sort");  
+        sorts.quickSort(0,sorts.datos.length-1);
+        //Muestra la lista ordenada con Quick Sort
+        System.out.println("Lista ordenada Quick Sort");  
                 for(int i=0; i < sorts.datos.length; i++){  
                         System.out.print(sorts.datos[i] + " ");  
                 }  
     }  
-    
-    
 }
